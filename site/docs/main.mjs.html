@@ -1,0 +1,54 @@
+<h1 id="timestring">Timestring</h1>
+<p>Small library for parsing and generating simple timestrings.</p>
+<h2 id="installation">Installation</h2>
+<pre><code class="language-bash">pnpm add @axel669/timestring
+</code></pre>
+<h2 id="usage">Usage</h2>
+<h3 id="parsestring">parse(string)</h3>
+<p>Returns the number of milliseconds of the combined parsed time parts.<br>Time Part Format: <code>&lt;time value&gt;&lt;unit&gt;</code> (<code>&quot;5m&quot;</code>, <code>&quot;1w&quot;</code>, <code>&quot;150ms&quot;</code>, etc)<br>The string can have any number of time parts, and time parts with the same unit
+will be added together. Any part of the string that isn&#39;t a time part will be
+ignored.</p>
+<h4 id="example">Example</h4>
+<pre><code class="language-js">import tstring from &quot;@axel669/timestring&quot;
+
+const duration = tstring.parse(&quot;15m 30s&quot;)
+</code></pre>
+<h3 id="stringifytime-options">stringify(time, options)</h3>
+<p>Generates a time string from the time given, with options to control the output.</p>
+<h4 id="options">options</h4>
+<pre><code>#### options.format
+&gt; default: `&quot;short&quot;`.
+The format to use for the units in the time string. Currently accepts
+`&quot;short&quot;` and `&quot;long&quot;`. Long format will use plurals when appropriate.
+```js
+// &quot;1s 337ms&quot;
+tstring.stringify(1337)
+// &quot;1 second, 337 miliseconds&quot;
+tstring.stringify(1337, { format: &quot;long&quot; })
+```
+
+#### options.returnError
+&gt; default: `false`
+If `true`, stringify will return errors instead of throwing them.
+
+#### options.show0s
+&gt; default: `false`
+If `true`, the output will include every unit the formatter knows, putting
+0s where necessary.
+```js
+// &quot;0w 0d 0h 0m 1s 337ms&quot;
+tstring.stringify(1337, { show0s: true })
+// &quot;0 weeks, 0 days, 0 hours, 0 minutes, 1 second, 337 miliseconds&quot;
+tstring.stringify(1337, { format: &quot;long&quot;, show0s: true })
+```
+
+#### options.sep
+If given, will replace the normal separator for different parts in the time
+string (`&quot; &quot;` for short format, `&quot;, &quot;` for long format).
+```js
+// &quot;1s|337ms&quot;
+tstring.stringify(1337, { sep: &quot;|&quot; })
+// &quot;0 weeks/0 days/0 hours/0 minutes/1 second/337 miliseconds&quot;
+tstring.stringify(1337, { format: &quot;long&quot;, sep: &quot;/&quot; })
+```
+</code></pre>
