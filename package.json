@@ -19,5 +19,6 @@
   ],
   "imports": {
     "#lib": "./lib/main.mjs"
-  }
+  },
+  "repository": "github:axel669/lib.ipsen",
 }
