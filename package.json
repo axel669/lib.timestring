@@ -15,7 +15,7 @@
     "@axel669/ipsen": "^0.3.0"
   },
   "files": [
-    "main.mjs"
+    "lib/main.mjs"
   ],
   "imports": {
     "#lib": "./lib/main.mjs"
