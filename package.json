@@ -1,0 +1,23 @@
+{
+  "name": "@axel669/timestring",
+  "version": "0.1.0",
+  "description": "",
+  "main": "lib/main.mjs",
+  "scripts": {
+    "test": "aegis tests/**/*.test.mjs",
+    "docs": "ipsen"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@axel669/aegis": "^0.2.7",
+    "@axel669/ipsen": "^0.3.0"
+  },
+  "files": [
+    "main.mjs"
+  ],
+  "imports": {
+    "#lib": "./lib/main.mjs"
+  }
+}
