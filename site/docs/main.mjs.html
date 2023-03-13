@@ -8,6 +8,15 @@
 <p>Returns the number of milliseconds of the combined parsed time parts.<br>Time Part Format: <code>&lt;time value&gt;&lt;unit&gt;</code> (<code>&quot;5m&quot;</code>, <code>&quot;1w&quot;</code>, <code>&quot;150ms&quot;</code>, etc)<br>The string can have any number of time parts, and time parts with the same unit
 will be added together. Any part of the string that isn&#39;t a time part will be
 ignored.</p>
+<h4 id="supported-units">Supported Units</h4>
+<ul>
+<li><code>w</code> - Weeks</li>
+<li><code>d</code> - Days</li>
+<li><code>h</code> - Hours</li>
+<li><code>m</code> - Minutes</li>
+<li><code>s</code> - Seconds</li>
+<li><code>ms</code> - Milliseconds</li>
+</ul>
 <h4 id="example">Example</h4>
 <pre><code class="language-js">import tstring from &quot;@axel669/timestring&quot;
 
@@ -16,39 +25,44 @@ const duration = tstring.parse(&quot;15m 30s&quot;)
 <h3 id="stringifytime-options">stringify(time, options)</h3>
 <p>Generates a time string from the time given, with options to control the output.</p>
 <h4 id="options">options</h4>
-<pre><code>#### options.format
-&gt; default: `&quot;short&quot;`.
-The format to use for the units in the time string. Currently accepts
-`&quot;short&quot;` and `&quot;long&quot;`. Long format will use plurals when appropriate.
-```js
-// &quot;1s 337ms&quot;
+<ul>
+<li><h4 id="optionsformat">options.format</h4>
+<blockquote>
+<p>default: <code>&quot;short&quot;</code>.
+  The format to use for the units in the time string. Currently accepts
+  <code>&quot;short&quot;</code> and <code>&quot;long&quot;</code>. Long format will use plurals when appropriate.</p>
+</blockquote>
+<pre><code class="language-js">// &quot;1s 337ms&quot;
 tstring.stringify(1337)
 // &quot;1 second, 337 miliseconds&quot;
 tstring.stringify(1337, { format: &quot;long&quot; })
-```
-
-#### options.returnError
-&gt; default: `false`
-If `true`, stringify will return errors instead of throwing them.
-
-#### options.show0s
-&gt; default: `false`
-If `true`, the output will include every unit the formatter knows, putting
-0s where necessary.
-```js
-// &quot;0w 0d 0h 0m 1s 337ms&quot;
+</code></pre>
+</li>
+<li><h4 id="optionsreturnerror">options.returnError</h4>
+<blockquote>
+<p>default: <code>false</code>
+  If <code>true</code>, stringify will return errors instead of throwing them.</p>
+</blockquote>
+</li>
+<li><h4 id="optionsshow0s">options.show0s</h4>
+<blockquote>
+<p>default: <code>false</code>
+  If <code>true</code>, the output will include every unit the formatter knows, putting
+  0s where necessary.</p>
+</blockquote>
+<pre><code class="language-js">// &quot;0w 0d 0h 0m 1s 337ms&quot;
 tstring.stringify(1337, { show0s: true })
 // &quot;0 weeks, 0 days, 0 hours, 0 minutes, 1 second, 337 miliseconds&quot;
 tstring.stringify(1337, { format: &quot;long&quot;, show0s: true })
-```
-
-#### options.sep
-If given, will replace the normal separator for different parts in the time
-string (`&quot; &quot;` for short format, `&quot;, &quot;` for long format).
-```js
-// &quot;1s|337ms&quot;
+</code></pre>
+</li>
+<li><h4 id="optionssep">options.sep</h4>
+<p>  If given, will replace the normal separator for different parts in the time
+  string (<code>&quot; &quot;</code> for short format, <code>&quot;, &quot;</code> for long format).</p>
+<pre><code class="language-js">// &quot;1s|337ms&quot;
 tstring.stringify(1337, { sep: &quot;|&quot; })
 // &quot;0 weeks/0 days/0 hours/0 minutes/1 second/337 miliseconds&quot;
 tstring.stringify(1337, { format: &quot;long&quot;, sep: &quot;/&quot; })
-```
 </code></pre>
+</li>
+</ul>

@@ -17,6 +17,14 @@ The string can have any number of time parts, and time parts with the same unit
 will be added together. Any part of the string that isn't a time part will be
 ignored.
 
+#### Supported Units
+- `w` - Weeks
+- `d` - Days
+- `h` - Hours
+- `m` - Minutes
+- `s` - Seconds
+- `ms` - Milliseconds
+
 #### Example
 ```js
 import tstring from "@axel669/timestring"
@@ -28,8 +36,7 @@ const duration = tstring.parse("15m 30s")
 Generates a time string from the time given, with options to control the output.
 
 #### options
-
-    #### options.format
+- #### options.format
     > default: `"short"`.
     The format to use for the units in the time string. Currently accepts
     `"short"` and `"long"`. Long format will use plurals when appropriate.
@@ -40,11 +47,11 @@ Generates a time string from the time given, with options to control the output.
     tstring.stringify(1337, { format: "long" })
     ```
 
-    #### options.returnError
+- #### options.returnError
     > default: `false`
     If `true`, stringify will return errors instead of throwing them.
 
-    #### options.show0s
+- #### options.show0s
     > default: `false`
     If `true`, the output will include every unit the formatter knows, putting
     0s where necessary.
@@ -55,7 +62,7 @@ Generates a time string from the time given, with options to control the output.
     tstring.stringify(1337, { format: "long", show0s: true })
     ```
 
-    #### options.sep
+- #### options.sep
     If given, will replace the normal separator for different parts in the time
     string (`" "` for short format, `", "` for long format).
     ```js
